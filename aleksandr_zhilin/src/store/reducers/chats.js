@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { Map, fromJS }   from 'immutable';
 
-import { load, send } from 'actions/chats';
+import { load, send, add } from 'actions/chats';
 
 const initialState = new Map({
   loading: false,
@@ -59,5 +59,14 @@ export const chatsReducer = handleActions({
       author: message.author,
       text: message.text
     });
+  },
+  [add]: (state, action) => {
+    const { name, id } = action.payload;
+
+    return state.setIn(['entries', id], fromJS({
+      id: id,
+      messages: [],
+      name,
+    }))
   }
 }, initialState);

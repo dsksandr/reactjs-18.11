@@ -47,11 +47,13 @@ export class App extends Component {
   // }
 
   render() {
-    const { chats, messages, sendMessage, id } = this.props;
+    const { chats, messages, sendMessage, id, addChat } = this.props;
+
+    // console.log(messages);
     return (
       <div className="container">
         <Header/>
-        <ChatList chats={chats}/>
+        <ChatList chats={chats} addChat={addChat}/>
         <section id="messenger">
           {
             messages

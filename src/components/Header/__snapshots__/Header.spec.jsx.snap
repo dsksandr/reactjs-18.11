@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should be rendered 1`] = `
+<header>
+  Hi from header!
+  <ul>
+    <li>
+      Chat1
+    </li>
+    <li>
+      Chat2
+    </li>
+  </ul>
+</header>
+`;

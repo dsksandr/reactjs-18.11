@@ -1,0 +1,10 @@
+.root {
+  flexGrow: 1;
+  background-color: grey;
+}
+
+.paper {
+  padding: 15px;
+  textAlign: 'center';
+  background-color: grey;
+}

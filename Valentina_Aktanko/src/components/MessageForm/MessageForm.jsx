@@ -1,4 +1,4 @@
-import './MessageForm.css';
+import './MessageForm.scss';
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -43,10 +43,10 @@ export class MessageForm extends Component {
     render() {
         const { author, text } = this.state;
         return (
-            <div className="messageForm">
-                <TextField label="Author" name="author" placeholder="author" onChange={this.handleInputChange} value={author} />
-                <TextField label="Text" name="text" onKeyDown={this.handleEnterDown} onChange={this.handleInputChange} value={text} />
-                <Fab variant="contained" color="primary" onClick={this.handleMessageSend}><SendIcon /></Fab>
+            <div className="message-form">
+                <TextField label="Author" name="author" placeholder="author" onChange={this.handleInputChange} value={author} className="messageForm__author"/>
+                <TextField label="Text" name="text" onKeyDown={this.handleEnterDown} onChange={this.handleInputChange} value={text} className="messageForm__text"/>
+                <Fab variant="round" color="primary" onClick={this.handleMessageSend} className="messageForm__btn"><SendIcon /></Fab>
             </div>
         )
     }

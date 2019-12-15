@@ -1,0 +1,33 @@
+{"name":"hello my fr","messages":[],"_id":"7lAQRRYR82LZzyfI"}
+{"name":"ttt","messages":[],"_id":"8NZO36Aa6n3dFyDc"}
+{"name":"XXL","messages":[],"_id":"TRvGNydY6d2QPaTc"}
+{"name":"xxl","messages":[],"_id":"VRWzuOialc7lqBcf"}
+{"name":"chaaaat","messages":[],"_id":"doYV4tFdPK5MeYRa"}
+{"name":"hjhsdj","messages":[],"_id":"elDjFdhjlZAhbRSt"}
+{"name":"bot","messages":[],"_id":"rKt5BygUEXe0bjny"}
+{"name":"чат 1","messages":[],"_id":"VOcXtWx48qbEM26h"}
+{"name":"чат 1","messages":[],"_id":"XuiwSVDR8rjQW6Yv"}
+{"name":"чат 3","messages":[],"_id":"yCCvzCBa4u39Giet"}
+{"name":"чат 4","messages":[],"_id":"rhSSwCztVBJ0RHgb"}
+{"name":"чат 1","messages":[{"author":"cddd","text":"dfd"}],"_id":"VOcXtWx48qbEM26h"}
+{"name":"чат 1","messages":[{"author":"cddd","text":"dfd"},{"chatId":"VOcXtWx48qbEM26h","author":"Bot","text":"Привет, cddd! Бот на связи!"}],"_id":"VOcXtWx48qbEM26h"}
+{"$$deleted":true,"_id":"doYV4tFdPK5MeYRa"}
+{"$$deleted":true,"_id":"VOcXtWx48qbEM26h"}
+{"$$deleted":true,"_id":"7lAQRRYR82LZzyfI"}
+{"$$deleted":true,"_id":"elDjFdhjlZAhbRSt"}
+{"$$deleted":true,"_id":"VRWzuOialc7lqBcf"}
+{"$$deleted":true,"_id":"8NZO36Aa6n3dFyDc"}
+{"$$deleted":true,"_id":"yCCvzCBa4u39Giet"}
+{"$$deleted":true,"_id":"rKt5BygUEXe0bjny"}
+{"$$deleted":true,"_id":"rhSSwCztVBJ0RHgb"}
+{"$$deleted":true,"_id":"XuiwSVDR8rjQW6Yv"}
+{"$$deleted":true,"_id":"TRvGNydY6d2QPaTc"}
+{"name":"Чат 1","messages":[],"_id":"j9P1hbgPwRcV7cjU"}
+{"name":"Чат 2","messages":[],"_id":"zbFhVFZOv22zIMUw"}
+{"name":"Чат 3","messages":[],"_id":"JnJdS1jfDGdtr7bs"}
+{"name":"Чат 1","messages":[{"author":"Алекс","text":"Привет!"}],"_id":"j9P1hbgPwRcV7cjU"}
+{"name":"Чат 1","messages":[{"author":"Алекс","text":"Привет!"},{"chatId":"j9P1hbgPwRcV7cjU","author":"Bot","text":"Привет, Алекс! Бот на связи!"}],"_id":"j9P1hbgPwRcV7cjU"}
+{"name":"Чат 2","messages":[{"author":"Алекс","text":"Пока"}],"_id":"zbFhVFZOv22zIMUw"}
+{"name":"Чат 2","messages":[{"author":"Алекс","text":"Пока"},{"chatId":"zbFhVFZOv22zIMUw","author":"Bot","text":"Привет, Алекс! Бот на связи!"}],"_id":"zbFhVFZOv22zIMUw"}
+{"name":"Чат 1","messages":[{"author":"Алекс","text":"Привет!"},{"chatId":"j9P1hbgPwRcV7cjU","author":"Bot","text":"Привет, Алекс! Бот на связи!"},{"author":"Алекс","text":"какие новости?"}],"_id":"j9P1hbgPwRcV7cjU"}
+{"name":"Чат 1","messages":[{"author":"Алекс","text":"Привет!"},{"chatId":"j9P1hbgPwRcV7cjU","author":"Bot","text":"Привет, Алекс! Бот на связи!"},{"author":"Алекс","text":"какие новости?"},{"chatId":"j9P1hbgPwRcV7cjU","author":"Bot","text":"Привет, Алекс! Бот на связи!"}],"_id":"j9P1hbgPwRcV7cjU"}

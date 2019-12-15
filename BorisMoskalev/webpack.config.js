@@ -1,7 +1,7 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require ('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: path.resolve(__dirname, 'src', 'index.jsx'),
     output: {
@@ -17,7 +17,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx$/,
+                test: /\.jsx?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
             },
@@ -40,5 +40,8 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'main.css',
         }),
-    ]
+    ],
+    devServer: {
+        historyApiFallback: true,
+    }
 };

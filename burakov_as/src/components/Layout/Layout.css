@@ -1,0 +1,6 @@
+.layout {
+  display: flex;
+  justify-content: start;
+  height: 100%;
+  widows: 100%;
+}

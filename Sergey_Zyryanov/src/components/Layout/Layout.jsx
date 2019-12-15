@@ -12,11 +12,10 @@ export class Layout extends Component{
       <div>
         <Header/>
         <div className='layout'>
-          <ChatList/>
-          <Messenger/>
+          <ChatList chats={this.props.chats} addChat={this.props.addChat}/>
+          <Messenger messages={this.props.messages} sendMessage={this.props.sendMessage}/>
         </div>
       </div>
-
     );
   }
 }

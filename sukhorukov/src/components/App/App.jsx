@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
-export class App extends Component {
-  state = {
-    counter: 0,
-  }
+import { HeaderRedux } from 'containers/HeaderContainer';
+import { MessengerRedux } from 'containers/MessengerContainer';
 
+export class App extends Component {
   render() {
-    
+    const { match } = this.props;
     return(
-      <div>Hello from App component</div>
+      <div>
+        <HeaderRedux match={match}/>
+        <MessengerRedux match={match}/>
+      </div>
     );
   }
 }

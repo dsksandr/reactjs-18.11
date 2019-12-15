@@ -1,0 +1,17 @@
+.header{
+   background-color: indigo;
+   padding: 0 20px;
+   height: 80px;
+   display: flex;
+   align-items: center;
+}
+.header__a_profile{
+    border-radius: 60px;
+    height: 60px;
+    width: 60px;
+    border: 2px solid yellow;
+    color: yellow;
+    display: block;
+    text-align: center;
+    line-height: 60px;
+}

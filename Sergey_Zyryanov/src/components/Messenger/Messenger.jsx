@@ -3,39 +3,38 @@ import './Messenger.css';
 
 import React, {Component} from 'react';
 
-import {MessageForm} from "components/MessageForm";
+import {MessageForm} from 'components/MessageForm';
 
 
 export class Messenger extends Component {
 
-  state = {
-    messages: [],
-  };
 
 
-  componentDidUpdate() {
-    const { author } = this.state.messages[this.state.messages.length - 1];
-    if (author !== 'Bot') {
-      setTimeout(() => {
-        this.setState({
-          messages: this.state.messages.concat([{ author: 'Bot', message: `Привет ${author}! Бот на связи!`}]),
-        });
-      }, 1000);
-    }
-  }
+  // componentDidUpdate() {
+  //
+  // if (this.messages.length){
+  //   const { author } = this.messages[this.messages.length - 1];
+  //   if (author !== 'Bot') {
+  //     setTimeout(() => {
+  //       this.handleMessageSend({ author: 'Bot', text: `Привет ${author}! Бот на связи!`});
+  //     }, 1000);
+  //   }
+  // }
+  // }
 
 
-  handleMessageSend = (message) => {
-    this.setState({
-      messages: this.state.messages.concat([{ author: message.author, message: message.text }]),
-    });
-  };
+
 
   render() {
-    const { messages } = this.state;
+    const {messages, sendMessage} = this.props;
+
     return (
       <div className='messenger'>
-        <MessageForm messages={messages} onSend={this.handleMessageSend} />
+        {
+          messages ?
+            <MessageForm messages={messages} onSend={sendMessage}/>
+            : 'Пожалуйста выберете чат'
+        }
       </div>
     );
 

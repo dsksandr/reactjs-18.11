@@ -1,45 +1,40 @@
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+
 import './messagesField.css'
 
 import React from 'react';
 
 import { MessagesList } from 'components/MessagesList/MessagesList';
+import { MessageForm } from 'components/MessageForm/MessageForm';
 
 export class MessageField extends React.Component {
     
     state ={
-        messages:[
-            {author:'bot',text:'Привет я бот Валера'},
-            {author:'bot',text:'Я отвечу на любой твой вопрос.'},
-            {author:'bot',text:'Задавай?'},
-        ],
+        chats:{
+            1:[{author:'bot',text:'Привет я бот Валера'},{author:'bot',text:'Это чат номер 1.'},{author:'bot',text:'Задавай вопрос?'},],
+            2:[{author:'bot',text:'Привет я бот Валера'},{author:'bot',text:'Это чат номер 2.'},{author:'bot',text:'Задавай вопрос?'},],
+            3:[{author:'bot',text:'Привет я бот Валера'},{author:'bot',text:'Это чат номер 3.'},{author:'bot',text:'Задавай вопрос?'},],
+            4:[{author:'bot',text:'Привет я бот Валера'},{author:'bot',text:'Это чат номер 4.'},{author:'bot',text:'Задавай вопрос?'},],
+            5:[{author:'bot',text:'Привет я бот Валера'},{author:'bot',text:'Это чат номер 5.'},{author:'bot',text:'Задавай вопрос?'},],
+        },
         newMessage: '',
-        author:''
-    }
-    keyDownEnter = (event) => {
-        if(event.ctrlKey && event.keyCode === 13){
-            this.onSentMessage(event)
-        }
+        author:'',
     }
     onChangeName = (event) =>{
         this.setState({author: event.target.value})
     }
-    answerForBot = () =>{
-        this.setState({
-            messages:[...this.state.messages, 
-                        {author:'bot', 
-                         text:this.state.author +', мая-твая нипонимать!'}
-                    ],
-        })
+    answerForBot = (props) =>{
+        let newChats = {...this.state.chats}
+        newChats[this.props.chatId].push({author:'bot', text:this.state.author +', мая-твая нипонимать!'})
+         this.setState({
+             chats:newChats,
+         })
     }
     onSentMessage = (event) =>{
+        let newChats = {...this.state.chats}
+       newChats[this.props.chatId].push({author:this.state.author,text:this.state.newMessage})
         this.setState({
-            messages:[...this.state.messages, 
-                        {author:this.state.author, 
-                         text:this.state.newMessage}
-                    ],
-            newMessage:''
+            chats:newChats,
+            newMessage:'',
         })
         setTimeout(this.answerForBot, 1000);
        
@@ -51,24 +46,12 @@ export class MessageField extends React.Component {
     render() {
         return (
             <div className="messageField-wrapper">
-                <div className='textArea__wrapper_name'>
-                    <TextField  required id="standard-required" 
-                                onChange={this.onChangeName} 
-                                placeholder='Your name...' 
-                                type="text" name='author'/>
-                </div>
-                <TextField id="standard-basic" 
-                            onChange={this.onChangeTextarea} 
-                            onKeyDown={this.keyDownEnter} 
-                            placeholder="New message..." 
-                            value={this.state.newMessage}>
-                </TextField>
-                <div className='textArea__wrapper_button'>
-                    <Button onClick={this.onSentMessage} 
-                            variant="contained">sent
-                    </Button>
-                </div>
-                <MessagesList messages={this.state.messages}/>
+                <MessageForm onChangeName={this.onChangeName}
+                            onChangeTextarea={this.onChangeTextarea}
+                            onSentMessage={this.onSentMessage}
+                            onSentMessage={this.onSentMessage}
+                            newMessage={this.state.newMessage} />
+                <MessagesList chat={this.state.chats[this.props.chatId]}/>
             </div>
            
         )

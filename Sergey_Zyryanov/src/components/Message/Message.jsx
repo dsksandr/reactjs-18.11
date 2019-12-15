@@ -7,7 +7,7 @@ import classNames from 'classnames';
 export class Message extends Component {
 
   static propTypes = {
-    message: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
   };
 
@@ -20,7 +20,7 @@ export class Message extends Component {
 
     return (
       <div className={classes}>
-        <div>{ this.props.message }</div>
+        <div>{ this.props.text }</div>
         <div className='message-sender'>{ this.props.author }</div>
       </div>
     );

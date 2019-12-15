@@ -8,18 +8,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 export class ChatList extends Component {
-
-  chats = [
-    'Astik',
-    'Eric Hoffman',
-    'Boris Moskalev'
-  ];
-
   render() {
+    const { chats } = this.props;
     return (
       <div className="chat-list">
           <List component="nav" aria-label="contacts">
-              {this.chats.map((item, idx) =><Link to={`/chats/${idx+1}`} key={idx}><ListItem button><ListItemText inset primary={item} /></ListItem></Link>
+              {chats.map((item, idx) =><Link to={`/chats/${item.id}`} key={idx}><ListItem button><ListItemText inset primary={item.name} /></ListItem></Link>
               )}
           </List>
       </div>

@@ -1,0 +1,9 @@
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  background-color: beige;
+  height: 100%;
+  width: 100%;
+  padding: 5%;
+  overflow-y: scroll;
+}

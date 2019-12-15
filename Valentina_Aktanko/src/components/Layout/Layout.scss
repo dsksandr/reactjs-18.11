@@ -1,22 +1,2 @@
-.layout {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-    &__container {
-        display: flex;
-    }
-
-    &__left {
-        width: 70%;
-        background-color: #bbdefb;
-        
-    }
-    
-    &__right {
-        width: 30%;
-        background-color: #bbdefb;
-        border-left: 2px dashed #2196f3;
-    }
-}
 

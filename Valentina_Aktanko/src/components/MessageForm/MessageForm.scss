@@ -1,0 +1,16 @@
+.message-form {
+    display: flex;
+    justify-content: space-between;
+
+    &__author {
+        width: 20%;
+    }
+
+    &__text {
+        width: 70%;
+    }
+
+    &__btn {
+        width: 10%;
+    }
+}

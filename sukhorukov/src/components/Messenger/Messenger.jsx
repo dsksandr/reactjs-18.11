@@ -2,44 +2,26 @@ import './Messenger.css';
 
 import React, { Component } from 'react';
 
+import Grid from '@material-ui/core/Grid';
+
 import { MessagesList } from 'components/MessagesList';
 import { MessageForm } from 'components/MessageForm';
-import { Header } from 'components/Header'
-
-const messages = ['Привет!', 'Как дела?', 'Как настроение?', 'Как погода?'];
+import { ChatList } from 'components/ChatList';
 
 export class Messenger extends Component {
-  state = {
-    messages: [
-      {
-        author: "Bot",
-        text: "Привет всем!"
-      }
-    ],
-  }
-
-  componentDidUpdate() {
-    const lastMessage = this.state.messages[this.state.messages.length -1];
-    if(lastMessage.author !== "Bot"){
-      setTimeout(() => { 
-        this.setState({
-          messages: this.state.messages.concat([{author: "Bot", text: `Привет ${lastMessage.author}, я бот. Я пока еще тупой!`}])
-        })
-      }, 1000);
-    }
-  }
-
-  handleMessageSend = (message) => {
-    this.setState(({messages}) => ({ messages: messages.concat([message]) }));
-  }
-
   render() {
-    const { messages } = this.state;
+    const { chats, messages, sendMessage, addChat, removeChat } = this.props;
     return(
       <div className="messenger">
-        <Header />
-        <MessagesList messages={messages}/>
-        <MessageForm onSend={this.handleMessageSend} />
+        <Grid container spacing={1}>
+          <Grid item xs={4}>
+            <ChatList chats={chats} addChat={addChat} removeChat={removeChat} />
+          </Grid>
+          <Grid item xs={8}>
+            {messages ? <MessagesList items={messages} /> : 'Пожалуйста выберите чат'}
+            {messages && <MessageForm onSend={sendMessage} />}
+          </Grid>
+        </Grid>   
       </div>
     )
   }

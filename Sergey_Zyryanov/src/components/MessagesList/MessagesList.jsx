@@ -13,8 +13,7 @@ export class MessagesList extends Component {
 
 
   render() {
-    const message = this.props.messages.map((message, idx) => <Message key={idx} author={message.author} message={ message.message }/>);
-
+    const message = this.props.messages.map((message, idx) => <Message key={idx} author={message.author} text={ message.text }/>);
     return (
        <div className='messages-list'>
          {message}

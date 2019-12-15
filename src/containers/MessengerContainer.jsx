@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import { Messenger } from 'components/Messenger';
-import { load, send } from 'actions/chats';
+import { sendMessage, listen, createChat, removeChat } from 'actions/chats';
 
 class MessengerContainer extends PureComponent {
   componentDidMount() {
-    const { loadChats } = this.props;
+    const { listenChats } = this.props;
 
-    loadChats();
+    listenChats();
   }
 
   handleMessageSend = (message) => {
@@ -20,27 +20,35 @@ class MessengerContainer extends PureComponent {
     });
   }
 
+  handleChatAdd = () => {
+    const { createChat, redirect } = this.props;
+    const chatName = prompt('Введите имя чата');
+
+    createChat({ name: chatName });
+  }
+
   render() {
-    const { chats, messages } = this.props;
+    const { chats, messages, removeChat } = this.props;
     
     return (
-      <Messenger sendMessage={this.handleMessageSend} messages={messages} chats={chats} />
+      <Messenger removeChat={removeChat} addChat={this.handleChatAdd} sendMessage={this.handleMessageSend} messages={messages} chats={chats} />
     )
   }
 }
 
 function mapStateToProps(state, ownProps) {
   const chats = state.chats.get('entries');
+
   const { match } = ownProps;
 
-  let messages = null; 
+  let messages = null;
 
   if (match && chats.has(match.params.id)) {
     messages = chats.getIn([match.params.id, 'messages']).toJS();
   }
 
   return {
-    chats: chats.map((entry) => ({ name: entry.get('name'), link: `/chats/${entry.get('id')}` })).toList().toJS(),
+    chats: chats.sortBy((entry) => -entry.get('timestamp')).map((entry) => ({ name: entry.get('name'), link: `/chats/${entry.get('_id')}`, _id: entry.get('_id'), timestamp: entry.get('timestamp') })).toList().toJS(),
     messages,
     chatId: match ? match.params.id : null,
   }
@@ -48,8 +56,10 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadChats: () => dispatch(load()),
-    sendMessage: (message) => dispatch(send(message)),
+    sendMessage,
+    createChat,
+    listenChats: () => dispatch(listen()),
+    removeChat: (chatId) => dispatch(removeChat(chatId)),
   }
 }
 

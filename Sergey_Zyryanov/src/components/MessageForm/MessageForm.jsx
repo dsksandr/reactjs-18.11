@@ -10,8 +10,8 @@ import {MessagesList} from "components/MessagesList";
 
 export class MessageForm extends Component {
   state = {
-    author: '',
     text: '',
+    author: '',
   };
 
 
@@ -52,7 +52,7 @@ export class MessageForm extends Component {
 
         <TextField id="outlined-basic" variant="outlined" label="author" name="author" onChange={this.handleInputChange} value={author} />
         <TextField multiline id="outlined-basic" variant="outlined" label="text" name="text" onKeyDown={this.handleEnterDown} onChange={this.handleInputChange} value={text}></TextField>
-        <Fab variant="contained" color="primary" onClick={this.handleMessageSend}><SendIcon /></Fab>
+        <Fab variant="round" color="primary" onClick={this.handleMessageSend}><SendIcon /></Fab>
 
       </div>
     );

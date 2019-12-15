@@ -1,10 +1,14 @@
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import Toolbar from '@material-ui/core/Toolbar';
+import {Link} from 'react-router-dom';
 
 export class Header extends Component {
     render() {
         return (
-            <h2>This is a header</h2>
+            <Toolbar>
+                <Link to='/'> Chats </Link>
+                <Link to='/profile/'>Profile</Link>
+            </Toolbar>
         )
     }
 }

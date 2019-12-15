@@ -1,16 +1,21 @@
+import 'assets/global.css';
+
 import React from 'react';
 import ReactDom from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 
-import { App } from 'components/App';
-
-const messages = ['Привет, друг!', 'How are you doing?'];
-
-const Message = (props) => <div>{props.text}</div>;
-const MessageList = (props) => {
-  return props.messages.map((message) => <Message text = {message} />)
-}
+import { routes } from './routes';
+import { store, history } from './store';
 
 ReactDom.render(
-  <App />,
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Switch>
+        {routes.map((route, idx) => <Route key={idx} {...route}/>)}
+      </Switch>
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('root'),
 ) 

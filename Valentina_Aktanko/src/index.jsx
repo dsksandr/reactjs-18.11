@@ -2,11 +2,21 @@ import 'assets/global.css';
 
 import React from 'react';
 import ReactDom from 'react-dom';
+import { Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 
-import { Messenger } from 'components/Messenger';
-import { Layout } from './components/Layout';
+import { routes } from './routes';
+import { store, history } from './store';
 
 ReactDom.render (
-    <Layout />,
-    document.getElementById('root'), 
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <Switch>
+                {routes.map((route, idx) => <Route key={idx} {...route} />)}
+            </Switch>
+        </ConnectedRouter>
+    </Provider>,
+    document.getElementById('root')
+    
 );

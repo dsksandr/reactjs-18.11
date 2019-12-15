@@ -7,17 +7,17 @@ import { Message, messageType } from 'components/Message';
 
 export class MessagesList extends Component {
   static propTypes = {
-    messages: PropTypes.arrayOf(
+    items: PropTypes.arrayOf(
       PropTypes.shape(messageType),
     ),
   };
 
   render() {
-    const { messages } = this.props;
+    const { items } = this.props;
 
     return(
       <div className="messages-list">
-        {messages.map((message, idx) => <Message key={idx} {...message}/>)}
+        {items.map((message, idx) => <Message key={idx} {...message}/>)}
       </div>
     )
   }

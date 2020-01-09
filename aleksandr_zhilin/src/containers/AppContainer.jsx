@@ -1,80 +1,63 @@
 import React, { PureComponent } from 'react';
 import { connect }              from 'react-redux';
-import { push }                 from 'connected-react-router'
 
-import { App }             from 'components/App';
-import { load, send, add } from 'actions/chats';
+import { App } from 'components/App';
+import {
+  sendMessage,
+  listen,
+}              from 'actions/chats';
 
 
 class AppContainer extends PureComponent {
   componentDidMount() {
-    const { loadChats } = this.props;
-
-    loadChats();
+    const { listen } = this.props;
+    listen();
   }
 
-  handleChatAdd = () => {
-    const { addChat, newChatId, redirect } = this.props;
-    const chatName = prompt('Введите имя чата');
-
-
-    // console.log({ name: chatName, id: newChatId });
-
-    addChat({ name: chatName, id: newChatId });
-
-    redirect(newChatId)
+  handleMessageSend = (message) => {
+    const { sendMessage, chatId } = this.props;
+    console.log({
+      chatId,
+      ...message
+    });
+    sendMessage({
+      chatId,
+      ...message
+    });
   };
 
   render() {
-    const { chats, messages, sendMessage, id } = this.props;
+    const { messages, chatName } = this.props;
 
-    console.log(chats, 'chats');
-    return <App chats={chats}
-                addChat={this.handleChatAdd}
-                messages={messages}
-                sendMessage={sendMessage}
-                id={id} />;
+    return <App messages={messages}
+                chatName={chatName}
+                sendMessage={this.handleMessageSend} />;
   }
 }
 
 function mapStateToProps(state, ownProps) {
   const chats = state.chats.get('entries');
-  const lastId = state.chats.get('entries').size
-    ? state.chats.get('entries').last().get('id')
-    : 0;
-  const newChatId = +lastId + 1;
 
   const { match } = ownProps;
 
-  let messages = null;
-
-  // console.log(match.params.id);
-  // console.log(chats.has(match.params.id));
-  //
-  // console.log(chats.toJS(), 'chats');
+  let messages, chatName = null;
 
   if (match && chats.has(match.params.id)) {
     messages = chats.getIn([match.params.id, 'messages']).toJS();
+    chatName = chats.getIn([match.params.id, 'name']);
   }
 
   return {
-    chats: chats.map((entry) => ({
-      name: entry.get('name'),
-      link: `/chat/${entry.get('id')}/`,
-      read: entry.get('read'),
-    })).toList().toJS(),
     messages,
-    id: match ? match.params.id : null,
-    newChatId,
+    chatName,
+    chatId: match ? match.params.id : null,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadChats: () => dispatch(load()),
-    sendMessage: (message) => dispatch(send(message)),
-    addChat: (chat) => dispatch(add(chat)),
-    redirect: (id) => dispatch(push(`/chat/${id}/`)),
+    sendMessage,
+    listen: () => dispatch(listen()),
   }
 }
 

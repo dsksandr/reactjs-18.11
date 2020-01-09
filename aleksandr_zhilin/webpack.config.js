@@ -22,6 +22,7 @@ module.exports = {
             actions: path.resolve(__dirname, 'src/store', 'actions'),
             reducers: path.resolve(__dirname, 'src/store', 'reducers'),
             middlewares: path.resolve(__dirname, 'src/store', 'middlewares'),
+            services: path.resolve(__dirname, 'src', 'services'),
         },
     },
     module: {

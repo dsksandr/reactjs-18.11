@@ -6,10 +6,6 @@
     grid-area: chat-list;
 }
 
-#messenger {
-    grid-area: messenger;
-}
-
 #aside {
     grid-area: footer;
 }
@@ -24,7 +20,8 @@
 }
 
 #messenger {
+    grid-area: messenger;
+
     display: flex;
     flex-flow: column nowrap;
-    padding: 20px;
 }

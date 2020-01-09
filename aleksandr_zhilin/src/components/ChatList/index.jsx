@@ -1,11 +1,20 @@
 import React    from 'react';
 import { Link } from 'react-router-dom';
+import moment   from 'moment';
 
-import { makeStyles }                                 from '@material-ui/core/styles';
-import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import EmailIcon                                      from '@material-ui/icons/Email';
-import DraftsIcon                                     from '@material-ui/icons/Drafts';
-import AddBoxIcon                                     from '@material-ui/icons/AddBox';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText
+}                     from '@material-ui/core';
+import EmailIcon      from '@material-ui/icons/Email';
+import DraftsIcon     from '@material-ui/icons/Drafts';
+import AddBoxIcon     from '@material-ui/icons/AddBox';
+import Fab            from '@material-ui/core/Fab';
+import RemoveIcon     from '@material-ui/icons/Remove'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,8 +24,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export const ChatList = ({ chats, addChat }) => {
+moment.locale('ru');
+
+export const ChatList = ({ chats, addChat, removeChat }) => {
   const classes = useStyles();
+
+
   return (
     <section className={classes.root}
              id="chat-list"
@@ -36,13 +49,19 @@ export const ChatList = ({ chats, addChat }) => {
                         : <DraftsIcon />
                     }
                   </ListItemIcon>
-                  <ListItemText primary={chat.name} />
+                  <ListItemText primary={`[${moment(chat.timestamp).format('ll')}] ${chat.name}`} />
                 </ListItem>
+                {/*<Fab variant={'round'}*/}
+                {/*     colore={'primary'}*/}
+                {/*     onClick={removeChat(chat._id)}>*/}
+                {/*  <RemoveIcon />*/}
+                {/*</Fab>*/}
               </Link>
             )
           })
         }
-        <ListItem button onClick={addChat}>
+        <ListItem button
+                  onClick={addChat}>
           <ListItemIcon>
             <AddBoxIcon />
           </ListItemIcon>

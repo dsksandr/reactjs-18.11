@@ -2,68 +2,42 @@ import './style.scss';
 
 import React, { Component } from 'react';
 
+import { ChatListRedux } from 'containers/ChatListContainer'
+
 import { Header }       from 'components/Header';
-import { ChatList }     from 'components/ChatList';
-import { ListMessages } from "../ListMessage";
-import { FormMessage }  from "../FormMessage";
+import { ListMessages } from 'components/ListMessage';
+import { FormMessage }  from 'components/FormMessage';
+import { createTitle }  from 'services/createTitle';
 
 export class App extends Component {
 
-  // interval = null;
-  //
-  // componentDidUpdate() {
-  //
-  //   if (this.messageList.length) {
-  //
-  //     const { author } = this.messageList[this.messageList.length - 1];
-  //     if (author !== 'Bot') {
-  //       setTimeout(() => {
-  //         this.handleMessageSend({
-  //           author: 'Bot',
-  //           text: `Привет, ${author}! Бот на связи! Я не понимаю вас!`,
-  //         });
-  //       }, 1000);
-  //     }
-  //   }
-  // }
+  componentDidMount() {
+    const { chatName } = this.props;
+    createTitle({ chatName });
+  }
 
-  // componentWillUnmount() {
-  //   clearInterval(this.interval);
-  // }
-  //
-
-  /**
-   * @returns []
-   */
-  // get messageList() {
-  //   const { chats, match } = this.props;
-  //
-  //   let messageList = null;
-  //
-  //   if (match && chats[match.params.id]) {
-  //     messageList = chats[match.params.id].messages;
-  //   }
-  //   return messageList
-  // }
+  componentDidUpdate() {
+    const { chatName } = this.props;
+    createTitle({ chatName });
+  }
 
   render() {
-    const { chats, messages, sendMessage, id, addChat } = this.props;
+    const { messages, sendMessage } = this.props;
 
-    // console.log(messages);
     return (
       <div className="container">
-        <Header/>
-        <ChatList chats={chats} addChat={addChat}/>
+        <Header />
+        <ChatListRedux />
         <section id="messenger">
           {
             messages
               ? (
                 <React.Fragment>
-                  <ListMessages listMessage={messages}/>
-                  <FormMessage onSend={sendMessage} id={id}/>
+                  <ListMessages listMessage={messages} />
+                  <FormMessage onSend={sendMessage} />
                 </React.Fragment>
               )
-              : <ListMessages listMessage={[{ author: '', text: 'Вам необходимо выбрать чат, чтобы продолжить.' }]}/>
+              : <ListMessages listMessage={[{ author: '', text: 'Вам необходимо выбрать чат, чтобы продолжить.' }]} />
           }
         </section>
       </div>

@@ -9,7 +9,6 @@ export class FormMessage extends Component {
   state = {
     author: 'User',
     text: '',
-    id: ''
   };
 
   static propTypes = {
@@ -35,7 +34,6 @@ export class FormMessage extends Component {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
-      id: this.props.id
     });
   };
 
@@ -53,14 +51,12 @@ export class FormMessage extends Component {
             noValidate
             autoComplete="off"
       >
-        <TextField id="standard-basic"
-                   label="Имя"
+        <TextField label="Имя"
                    name="author"
                    value={author}
                    onChange={this.handleInputChange}
         />
-        <TextField id="standard-basic"
-                   label="Текст сообщения"
+        <TextField label="Текст сообщения"
                    multiline
                    rows="2"
                    name="text"
